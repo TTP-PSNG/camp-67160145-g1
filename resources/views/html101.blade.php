@@ -1,53 +1,23 @@
-<!-- file : resources/views/html101.blade.php -->
+ @extends('template.default')
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>HTML</title>
-            <link rel ="stylesheet" href="css/bootstrap.css">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-            
-            <style>
-                body {
-                    font-family: "Kanit", sans-serif;
-                }
-
-                input[type="radio"] {
-                    margin-right : 5px;
-                    border : 1px solid #aaa;
-                }
-
-                input[type="text"] {
-                    border :1px solid #aaa;
-                }
-
-                input[type="date"]{
-                    border :1px solid #aaa;
-                }
-
-                input[type="file"]{
-                    border :1px solid #aaa;
-                }
-
-            </style>
-
-        </head>
-    <body>
-
-        <div class="container mt-4">
-          <h1>Workshop #HTML - FORM</h1> 
+ @section('title', 'Workshop FORM')
+ @section('content')
+ <h1>Workshop #HTML - FORM</h1>
           <form>
-
                 <div class="row mt-3">
                     <div class="col-sm-12 col-md-2">
                         <label for="fname">ชื่อ</label>
                     </div>
                     <div class="col-5">
                         <input id="fname" class="form-control" type="text">
+
+                        <div class="valid-feedback">
+                            Correct!
+                        </div>
+
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                        </div>
                     </div>
                 </div>
 
@@ -86,7 +56,7 @@
                     <div class="col-5">
                         <input name="sex" id="male" class="form-check-input" type="radio" >
                         <label for="male" class="form-check-label" >ชาย&emsp;&emsp;</label>
-                
+
                         <input name="sex" id="female" class="form-check-input" type="radio" >
                         <label for="female" class="form-check-label">หญิง</label>
                     </div>
@@ -134,13 +104,13 @@
                     <div class="col-5">
                         <input name="song" id="pop" class="form-check-input" type="radio" >
                         <label for="pop" class="form-check-label" >ป็อป&emsp;&emsp;</label>
-                
+
                         <input name="song" id="rock" class="form-check-input" type="radio" >
                         <label for="rock" class="form-check-label">ร็อค&emsp;&emsp;</label>
 
                         <input name="song" id="country" class="form-check-input" type="radio" >
                         <label for="country" class="form-check-label">ลูกทุ่ง&emsp;&emsp;</label>
-                        
+
                         <input name="song" id="other" class="form-check-input" type="radio" >
                         <label for="other" class="form-check-label">อื่น ๆ &emsp;&emsp;</label>
                     </div>
@@ -157,16 +127,56 @@
 
                 <div class="row mt-3">
                     <div class="col-sm-12 col-md-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-success" onclick="clickMe()" style="background-color:green; border:1px solid green;">Submit</button>
                     </div>
-            
+
                     <div class="col-5">
-                        <button type="reset" class="btn btn-secondary">Reset</button>
+                        <button type="reset" class="btn btn-light">Reset</button>
                     </div>
                     <br><br>
 
-          </form> 
-        </div>
+          </form>
+@endsection
 
-    </body>
-</html>
+@push('scripts')
+    <script>
+        // function clickMe(){
+        //     console.log("Clicked");
+
+        // }
+        let clickMe = function(){
+            let fname = document.getElementById('fname')
+        //    fname.value = "from ClickMe"
+        //    console.log(fname.value);
+
+           if (fname.value == ""){
+            fname.classList.remove('is-valid')
+            fname.classList.add('is-invalid')
+           } else{
+            fname.classList.remove('is-invalid')
+            fname.classList.add('is-valid')
+           }
+
+
+        }
+
+        let myfunc = (callback)=>{
+            callback("in CallBack")
+        }
+
+        callMe = (param) => {
+            console.log(param);
+
+        }
+
+        myfunc(callMe)
+
+        let myvar1 = 1
+        let myvar2 = "1"
+        myvar2 = parseInt(myvar2)
+
+        console.log(myvar2 + myvar1 + "\n\n\nทดสอบ");
+        console.log(1 == '1');
+
+    </script>
+@endpush
