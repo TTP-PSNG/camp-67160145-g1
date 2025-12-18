@@ -16,6 +16,10 @@
                     font-family: "Kanit", sans-serif;
                 }
 
+                /* textarea{
+                    border:1px solid #aaa;
+                }
+
                 input[type="radio"] {
                     margin-right : 5px;
                     border : 1px solid #aaa;
@@ -31,7 +35,17 @@
 
                 input[type="file"]{
                     border :1px solid #aaa;
+                } */
+
+                .square-box{
+                    max-width: 1000px;
+                    min-height: 600px;
+                    border:1px solid #aaa;
+                    border-radius: 20px;
                 }
+
+
+
 
             </style>
             @stack('styles')
@@ -40,7 +54,7 @@
     <body>
 
         <div class="container mt-4">
-            <h1>File Default</h1>
+            <h1 class="text-center">File Default</h1>
             @yield('content')
 
         </div>
