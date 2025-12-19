@@ -54,7 +54,7 @@
     <body>
 
         <div class="container mt-4">
-            <h1 class="text-center">File Default</h1>
+            <h1 class="text-center">@yield('header')</h1>
             @yield('content')
 
         </div>

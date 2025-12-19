@@ -1,6 +1,7 @@
  @extends('template.default')
 
  @section('title', 'Workshop FORM')
+ @section('header' , 'Workshop #HTML - FORM')
  @section('content')
 
  <h1 class="text-center">Workshop #HTML - FORM</h1>
@@ -322,7 +323,7 @@
                 input.classList.add('is-valid'); // (ถ้าอยากให้เป็นสีเขียวเมื่อเลือกแล้ว)
             });
                 errorMsg.style.display = 'none'; // ซ่อนข้อความ Error
-}
+            }
 
 
            let genderSelected = document.querySelector('input[name="sex"]:checked');
