@@ -6,14 +6,14 @@
 
  <h1 class="text-center">Workshop #HTML - FORM</h1>
         <div class="container square-box justify-content-center align-items-center overflow-hidden">
-          <form>
-
+          <form id="myForm" action="/submit" method="post">
+                @csrf
                 <div class="row mt-5">
                     <div class="col-sm-12 col-md-3 mx-5 text-md-end">
                         <label for="fname">ชื่อ</label>
                     </div>
                     <div class="col-5">
-                        <input id="fname" class="form-control" type="text">
+                        <input id="fname" name="fname" class="form-control" type="text">
 
                         <div class="valid-feedback">
                             ถูกต้อง!
@@ -31,7 +31,7 @@
                         <label for="lname">สกุล</label>
                     </div>
                     <div class="col-5">
-                        <input id="lname" class="form-control" type="text">
+                        <input id="lname" name="lname" class="form-control" type="text">
 
                         <div class="valid-feedback">
                             ถูกต้อง!
@@ -49,7 +49,7 @@
                         <label for="birthday" class="form-label">วัน/เดือน/ปีเกิด</label>
                     </div>
                     <div class="col-4">
-                        <input id="birthday" class="form-control" type="date" required>
+                        <input id="birthday" name="birthday" class="form-control" type="date" required>
 
                         <div class="valid-feedback">
                             ถูกต้อง!
@@ -67,7 +67,7 @@
                         <label for="age" class="form-label">อายุ</label>
                     </div>
                     <div class="col-5">
-                        <input id="age" class="form-control" type="text">
+                        <input id="age" name="age" class="form-control" type="text">
 
                         <div class="valid-feedback">
                             ถูกต้อง!
@@ -82,14 +82,14 @@
 
                 <div class="row mt-3">
                     <div class="col-sm-12 col-md-3 mx-5 text-md-end">
-                        <label for="sex">เพศ</label>
+                        <label for="gender">เพศ</label>
                     </div>
 
                     <div class="col-3">
-                        <input name="sex" id="male" class="form-check-input" type="radio" >
+                        <input name="gender" id="male" class="form-check-input" type="radio" value="ชาย">
                         <label for="male" class="form-check-label" >ชาย&emsp;&emsp;</label>
 
-                        <input name="sex" id="female" class="form-check-input" type="radio" >
+                        <input name="gender" id="female" class="form-check-input" type="radio" value="หญิง">
                         <label for="female" class="form-check-label">หญิง</label>
 
                         <div class="valid-feedback">
@@ -108,7 +108,7 @@
                         <label for="file">รูป</label>
                     </div>
                     <div class="col-3">
-                        <input id="file" class="form-control" type="file">
+                        <input id="file" name="file" class="form-control" type="file">
 
                         <div class="valid-feedback">
                             ถูกต้อง!
@@ -126,7 +126,7 @@
                         <label for="address" class="form-label">ที่อยู่</label>
                     </div>
                     <div class="col-5">
-                        <textarea class="form-control" id="address"></textarea>
+                        <textarea class="form-control" id="address" name="address"></textarea>
 
                             <div class="valid-feedback">
                                 ถูกต้อง!
@@ -144,13 +144,13 @@
                         <label for="color">สีที่ชอบ</label>
                     </div>
                     <div class="col-2">
-                        <select class="form-select" id="color" aria-label="Default select example">
+                        <select class="form-select" id="color" name="color" aria-label="Default select example">
                             <option selected disabled value="">เลือก...</option>
-                            <option value="1">สีแดง</option>
-                            <option value="2">สีเหลือง</option>
-                            <option value="3">สีน้ำเงิน</option>
-                            <option value="4">สีเขียว</option>
-                            <option value="5">สีดำ</option>
+                            <option value="สีแดง">สีแดง</option>
+                            <option value="สีเหลือง">สีเหลือง</option>
+                            <option value="สีน้ำเงิน">สีน้ำเงิน</option>
+                            <option value="สีเขียว">สีเขียว</option>
+                            <option value="สีดำ">สีดำ</option>
                         </select>
 
                         <div class="valid-feedback">
@@ -195,7 +195,7 @@
                 <div class="row mt-3 text-center">
                     <div class="col-sm-12 col-md-5 mx-5">
                         <div class="form-check d-flex justify-content-center align-items-center flex-wrap">
-                            <input class="form-check-input" type="checkbox" value="" id="agree">
+                            <input class="form-check-input" type="checkbox" value="" id="agree" name="agree">
                             <label class="form-check-label ms-3" for="agree">
                                 ยินยอมให้เก็บข้อมูล
                             </label>
@@ -313,21 +313,20 @@
 
             if (!selectedSong) {
                 allSongInputs.forEach(input => {
-                input.classList.add('is-invalid'); // ทำให้ปุ่มวงกลมเป็นสีแดง
+                input.classList.add('is-invalid');
             });
-            // สั่งให้ข้อความ Error แสดงผล (เพราะปกติ Bootstrap จะซ่อนไว้)
                 errorMsg.style.display = 'block';
             } else {
                 allSongInputs.forEach(input => {
                 input.classList.remove('is-invalid');
-                input.classList.add('is-valid'); // (ถ้าอยากให้เป็นสีเขียวเมื่อเลือกแล้ว)
+                input.classList.add('is-valid');
             });
-                errorMsg.style.display = 'none'; // ซ่อนข้อความ Error
+                errorMsg.style.display = 'none';
             }
 
 
-           let genderSelected = document.querySelector('input[name="sex"]:checked');
-           let radioInputs = document.querySelectorAll('input[name="sex"]');
+           let genderSelected = document.querySelector('input[name="gender"]:checked');
+           let radioInputs = document.querySelectorAll('input[name="gender"]');
            if (!genderSelected) {
             radioInputs.forEach(input => {
             input.classList.add('is-invalid');
@@ -338,14 +337,22 @@
             input.classList.add('is-valid');
             });
 
+            }
 
 
-
-
-
-
-    }
-
+            if (
+                fname.value !== "" &&
+                lname.value !== "" &&
+                age.value !== "" &&
+                address.value !== "" &&
+                color.value !== "" &&
+                birthdayInput.value !== "" &&
+                agreeCheckbox.checked &&
+                selectedSong &&
+                genderSelected
+            ) {
+                document.getElementById('myForm').submit();
+            }
         }
 
         let myfunc = (callback)=>{
